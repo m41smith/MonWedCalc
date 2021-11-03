@@ -39,35 +39,33 @@ public class CalcWindow {
         numberField.setText(""+result);
     }
 
-    @FXML
-    public void plusPressed(){
+    private void processNumber(){
         var numberAsText = numberField.getText();
         firstNumber = Long.parseLong(numberAsText);
         numberField.setText("");
+    }
+
+    @FXML
+    public void plusPressed(){
+        processNumber();
         operation = OperatorType.Add;
     }
 
     @FXML
     public void subPressed(){
-        var numberAsText = numberField.getText();
-        firstNumber = Long.parseLong(numberAsText);
-        numberField.setText("");
+        processNumber();
         operation = OperatorType.Subtract;
     }
 
     @FXML
     public void multiplyPressed(){
-        var numberAsText = numberField.getText();
-        firstNumber = Long.parseLong(numberAsText);
-        numberField.setText("");
+        processNumber();
         operation = OperatorType.Multiply;
     }
 
     @FXML
     public void dividePressed(){
-        var numberAsText = numberField.getText();
-        firstNumber = Long.parseLong(numberAsText);
-        numberField.setText("");
+        processNumber();
         operation = OperatorType.Divide;
     }
 }
