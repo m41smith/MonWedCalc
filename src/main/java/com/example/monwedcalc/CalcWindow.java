@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 public class CalcWindow {
 
     private long firstNumber;
-
+    private OperatorType operation;
     @FXML
     private TextField numberField;
 
@@ -29,7 +29,13 @@ public class CalcWindow {
     public void equalPressed(){
         var secondNumberText = numberField.getText();
         var secondNumber = Long.parseLong(secondNumberText);
-        var result = secondNumber+firstNumber;
+        var result = 0.0;
+        switch (operation){
+            case Add -> result = secondNumber+firstNumber;
+            case Subtract -> result = firstNumber-secondNumber;
+            case Multiply -> result = firstNumber*secondNumber;
+            case Divide -> result = (double)firstNumber/secondNumber;
+        }
         numberField.setText(""+result);
     }
 
@@ -38,6 +44,30 @@ public class CalcWindow {
         var numberAsText = numberField.getText();
         firstNumber = Long.parseLong(numberAsText);
         numberField.setText("");
+        operation = OperatorType.Add;
+    }
 
+    @FXML
+    public void subPressed(){
+        var numberAsText = numberField.getText();
+        firstNumber = Long.parseLong(numberAsText);
+        numberField.setText("");
+        operation = OperatorType.Subtract;
+    }
+
+    @FXML
+    public void multiplyPressed(){
+        var numberAsText = numberField.getText();
+        firstNumber = Long.parseLong(numberAsText);
+        numberField.setText("");
+        operation = OperatorType.Multiply;
+    }
+
+    @FXML
+    public void dividePressed(){
+        var numberAsText = numberField.getText();
+        firstNumber = Long.parseLong(numberAsText);
+        numberField.setText("");
+        operation = OperatorType.Divide;
     }
 }
